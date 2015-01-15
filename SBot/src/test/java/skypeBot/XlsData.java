@@ -18,7 +18,6 @@ import Fillo.Recordset;
 
 public class XlsData {
 
-	//	static String xlsPath = "src/test/java/multisite/skypeBot/config.xls";
 	static String xlsPath = "config.xls";
 	static Random rand = new Random();
 	static Fillo fillo=new Fillo();
