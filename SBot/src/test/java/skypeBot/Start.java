@@ -9,21 +9,25 @@ import java.util.Map;
 
 public class Start {
 
+	static Map<String, String> settingsMap;
+	static int fromHour;
+	static int toHour ;
+	static boolean sendRandom;
+	static boolean sendHoliday;
+
 	/**
 	 * @method Start Bot
 	 * @param args
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-
 		int thisDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 		int thisHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-		Map<String, String> settingsMap = XlsData.getSettingsMap();
-		int fromHour = Integer.parseInt(settingsMap.get("from_time"));
-		int toHour = Integer.parseInt(settingsMap.get("to_time"));
-		boolean sendRandom = Integer.valueOf(settingsMap.get("send_random")) == 1;
-		boolean sendHoliday = Integer.valueOf(settingsMap.get("send_holiday")) == 1;
-
+		settingsMap = XlsData.getSettingsMap();
+		fromHour = Integer.parseInt(settingsMap.get("from_time"));
+		toHour = Integer.parseInt(settingsMap.get("to_time"));
+		sendRandom = Integer.valueOf(settingsMap.get("send_random")) == 1;
+		sendHoliday = Integer.valueOf(settingsMap.get("send_holiday")) == 1;
 		System.out.println("hour = "+thisHour);
 		JOptionPane.showMessageDialog(null, "Skype Bot was started");
 		for(int j=0;j<31;){
@@ -63,12 +67,5 @@ public class Start {
 			}
 		}
 	}
-
-
-
-
-
-
-
 
 }
