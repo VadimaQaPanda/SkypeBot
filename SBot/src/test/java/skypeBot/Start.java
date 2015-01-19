@@ -4,7 +4,9 @@ package skypeBot;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.swing.JOptionPane;
+
 import java.util.Map;
 
 public class Start {
@@ -23,22 +25,14 @@ public class Start {
 	public static void main(String[] args) throws Exception {
 		int thisDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 		int thisHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-		settingsMap = XlsData.getSettingsMap();
-		fromHour = Integer.parseInt(settingsMap.get("from_time"));
-		toHour = Integer.parseInt(settingsMap.get("to_time"));
-		sendRandom = Integer.valueOf(settingsMap.get("send_random")) == 1;
-		sendHoliday = Integer.valueOf(settingsMap.get("send_holiday")) == 1;
+		getSettings();
 		System.out.println("hour = "+thisHour);
 		JOptionPane.showMessageDialog(null, "Skype Bot was started");
 		for(int j=0;j<31;){
 			try{
 				for(int i=0;i<24;){
 					try{
-						settingsMap = XlsData.getSettingsMap();
-						fromHour = Integer.parseInt(settingsMap.get("from_time"));
-						toHour = Integer.parseInt(settingsMap.get("to_time"));
-						sendRandom = Integer.valueOf(settingsMap.get("send_random")) == 1;
-						sendHoliday = Integer.valueOf(settingsMap.get("send_holiday")) == 1;
+						getSettings();
 						System.out.println("i = "+i);
 						if(thisHour>=fromHour && thisHour<=toHour){
 							if(sendRandom){
@@ -67,5 +61,17 @@ public class Start {
 			}
 		}
 	}
-
+	
+	/**
+	 * @method getSettings
+	 * @throws Exception
+	 */
+	public static void getSettings() throws Exception {
+		settingsMap = XlsData.getSettingsMap();
+		fromHour = Integer.parseInt(settingsMap.get("from_time"));
+		toHour = Integer.parseInt(settingsMap.get("to_time"));
+		sendRandom = Integer.valueOf(settingsMap.get("send_random")) == 1;
+		sendHoliday = Integer.valueOf(settingsMap.get("send_holiday")) == 1;
+	}
+	
 }
